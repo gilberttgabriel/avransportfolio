@@ -1,11 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import Welcome from './components/Welcome.vue'
+import Hero from './components/Hero.vue'
+
+const showWelcome = ref(true)
+const heroActive = ref(false)
+
+function onWelcomeDone() {
+  heroActive.value = true
+}
+
+function onHeroOpened() {
+  showWelcome.value = false
+}
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="stage">
+    <Welcome v-if="showWelcome" @done="onWelcomeDone" />
+    <Hero :active="heroActive" @opened="onHeroOpened" />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+</style>

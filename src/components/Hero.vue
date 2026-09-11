@@ -75,8 +75,8 @@ function onTransitionEnd(e: TransitionEvent) {
   position: absolute;
   inset: 0;
   z-index: 1;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   pointer-events: none;
 }
@@ -97,16 +97,16 @@ function onTransitionEnd(e: TransitionEvent) {
 }
 
 .iris.open {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-video {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
 }
@@ -114,7 +114,7 @@ function onTransitionEnd(e: TransitionEvent) {
 .iris-border {
   position: absolute;
   inset: 0;
-  border: 0.4vw solid #ff2b2b;
+  border: max(2px, 0.4vw) solid #ff2b2b;
   pointer-events: none;
   opacity: 1;
   transition: opacity 0.4s ease-out;
@@ -183,5 +183,28 @@ function onTransitionEnd(e: TransitionEvent) {
   height: 1.2vw;
   min-width: 14px;
   min-height: 14px;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    left: 7vw;
+    gap: 7vh;
+  }
+
+  .nav-link {
+    font-size: clamp(2rem, 11vw, 3.2rem);
+  }
+
+  .scroll-hint {
+    top: 2vh;
+    padding: 0.5vh 3vw;
+    border-radius: 3vw;
+  }
+
+  .icon-diamond,
+  .icon-chevron {
+    width: 4vw;
+    height: 4vw;
+  }
 }
 </style>

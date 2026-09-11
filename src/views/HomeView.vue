@@ -29,7 +29,10 @@ function onHeroOpened() {
 <style scoped>
 .stage {
   position: relative;
-  width: 100vw;
+  width: 100%;
+  /* dvh descuenta la barra del navegador movil; vh la ignora y desborda. */
   height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 </style>

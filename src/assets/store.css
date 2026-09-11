@@ -35,6 +35,8 @@ body.lock-scroll,
 body.lock-scroll #app {
   height: 100%;
   overflow: hidden;
+  /* Evita el rebote elastico de iOS sobre una pantalla que no scrollea. */
+  overscroll-behavior: none;
 }
 
 .store {

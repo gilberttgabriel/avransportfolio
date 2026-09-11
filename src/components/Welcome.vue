@@ -150,8 +150,8 @@ const SPLATTER_DOTS = [
 .welcome {
   position: relative;
   isolation: isolate;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #980000;
   display: flex;
   flex-direction: column;
@@ -165,7 +165,7 @@ const SPLATTER_DOTS = [
   z-index: 1;
   width: min(45vw, 45vh);
   aspect-ratio: 1 / 1;
-  border: 0.4vw solid #ffffff;
+  border: max(2px, 0.4vw) solid #ffffff;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -278,5 +278,25 @@ const SPLATTER_DOTS = [
   justify-content: center;
   white-space: pre;
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .portrait-frame {
+    /* En vertical 45vw dejaba el retrato diminuto. */
+    width: min(74vw, 44vh);
+    box-shadow: -4vw 3vw 7vw rgba(0, 0, 0, 0.45);
+  }
+
+  .caption {
+    margin-top: 3vh;
+  }
+
+  .title {
+    font-size: clamp(1.1rem, 6vw, 1.6rem);
+  }
+
+  .loader {
+    font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+  }
 }
 </style>

@@ -1,31 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Welcome from './components/Welcome.vue'
-import Hero from './components/Hero.vue'
+import { watch } from 'vue'
+import { RouterView, useRoute } from 'vue-router'
 
-const showWelcome = ref(true)
-const heroActive = ref(false)
+const route = useRoute()
 
-function onWelcomeDone() {
-  heroActive.value = true
-}
-
-function onHeroOpened() {
-  showWelcome.value = false
-}
+/* Home y contacto ocupan exactamente una pantalla; el resto de la tienda scrollea. */
+watch(
+  () => route.name,
+  (name) => {
+    const lock = name === 'home' || name === 'contacto'
+    document.documentElement.classList.toggle('lock-scroll', lock)
+    document.body.classList.toggle('lock-scroll', lock)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
-  <div class="stage">
-    <Welcome v-if="showWelcome" @done="onWelcomeDone" />
-    <Hero :active="heroActive" @opened="onHeroOpened" />
-  </div>
+  <RouterView />
 </template>
-
-<style scoped>
-.stage {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-</style>

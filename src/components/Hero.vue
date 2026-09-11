@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
-const props = defineProps<{ active: boolean }>()
+const props = withDefaults(defineProps<{ active: boolean; instant?: boolean }>(), {
+  instant: false,
+})
 const emit = defineEmits<{ (e: 'opened'): void }>()
 
-const finished = ref(false)
+const finished = ref(props.instant)
+
+onMounted(() => {
+  if (props.instant) emit('opened')
+})
 const videoEl = ref<HTMLVideoElement | null>(null)
 
 function onEnded() {
@@ -24,7 +31,7 @@ function onTransitionEnd(e: TransitionEvent) {
 
 <template>
   <div class="hero">
-    <div class="iris" :class="{ open: active }" @transitionend="onTransitionEnd">
+    <div class="iris" :class="{ open: active, 'no-anim': instant }" @transitionend="onTransitionEnd">
       <video
         ref="videoEl"
         class="hero-video"
@@ -40,9 +47,9 @@ function onTransitionEnd(e: TransitionEvent) {
     </div>
 
     <nav class="nav" :class="{ visible: finished }">
-      <a href="#proyectos" class="nav-link">proyectos</a>
-      <a href="#sobre-mi" class="nav-link">sobre mi</a>
-      <a href="#contacto" class="nav-link">contacto</a>
+      <RouterLink to="/proyectos" class="nav-link">proyectos</RouterLink>
+      <RouterLink to="/sobre-mi" class="nav-link">sobre mi</RouterLink>
+      <RouterLink to="/contacto" class="nav-link">contacto</RouterLink>
     </nav>
 
     <div class="scroll-hint" :class="{ visible: finished }">
@@ -83,6 +90,10 @@ function onTransitionEnd(e: TransitionEvent) {
   transform: translate(-50%, -50%);
   overflow: hidden;
   transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1), height 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iris.no-anim {
+  transition: none;
 }
 
 .iris.open {
@@ -135,7 +146,7 @@ function onTransitionEnd(e: TransitionEvent) {
 .nav-link {
   font-family: 'Drowner', sans-serif;
   font-size: clamp(2.5rem, 5vw, 5rem);
-  color: #ffffff;
+  color: var(--cream, #f1f0e2);
   text-decoration: none;
   letter-spacing: 0.03em;
   transition: opacity 0.2s ease-out;

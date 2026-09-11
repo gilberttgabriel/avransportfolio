@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Drowner';
+  src: url('@/assets/fonts/Drowner-Free.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Pantone 11-4302 TCX Cannoli Cream */
+  --cream: #f1f0e2;
+  --store-bg: var(--cream);
+  --store-tile: #e5e3d1;
+  --store-ink: #16161a;
+  --store-muted: #8a8877;
+  --store-line: #dcdac6;
+  --store-accent: #980000;
+  --store-header: 72px;
+  --store-gutter: clamp(16px, 2vw, 30px);
+  --store-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* La home bloquea el scroll; las rutas de tienda lo necesitan. */
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+html.lock-scroll,
+body.lock-scroll,
+body.lock-scroll #app {
+  height: 100%;
+  overflow: hidden;
+}
+
+.store {
+  min-height: 100vh;
+  background: var(--store-bg);
+  color: var(--store-ink);
+  font-family: var(--store-font);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.store a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.store button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.store-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--store-muted);
+}

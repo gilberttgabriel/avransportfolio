@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 const emit = defineEmits<{ (e: 'done'): void }>()
 
 const progress = ref(0)
-const DURATION_MS = 5000
+const DURATION_MS =4000
 const BAR_LENGTH = 10
 
 onMounted(() => {

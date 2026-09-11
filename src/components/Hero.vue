@@ -12,14 +12,6 @@ const finished = ref(props.instant)
 onMounted(() => {
   if (props.instant) emit('opened')
 })
-const videoEl = ref<HTMLVideoElement | null>(null)
-
-function onEnded() {
-  const v = videoEl.value
-  if (!v) return
-  v.currentTime = 0
-  v.play()
-}
 
 function onTransitionEnd(e: TransitionEvent) {
   if (e.propertyName === 'width' && props.active) {
@@ -32,15 +24,8 @@ function onTransitionEnd(e: TransitionEvent) {
 <template>
   <div class="hero">
     <div class="iris" :class="{ open: active, 'no-anim': instant }" @transitionend="onTransitionEnd">
-      <video
-        ref="videoEl"
-        class="hero-video"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-        @ended="onEnded"
-      >
+      <!-- loop nativo: reinicia sin el corte que provocaba rebobinar desde JS. -->
+      <video class="hero-video" autoplay loop muted playsinline preload="auto">
         <source src="/1.mp4" type="video/mp4" />
       </video>
       <div class="iris-border" :class="{ hidden: finished }"></div>

@@ -17,6 +17,11 @@ defineProps<{
 
 <template>
   <article class="pdp">
+    <!-- Solo visible en movil: pone el enlace de vuelta arriba de todo,
+         antes de la imagen. En desktop queda oculto (ver .pdp-back-mobile),
+         asi el grid de 2 columnas de abajo no cambia nada. -->
+    <RouterLink class="pdp-back pdp-back-mobile" :to="backTo">&larr; {{ backLabel }}</RouterLink>
+
     <div class="pdp-media">
       <slot name="media">
         <ProductMedia :name="name" :caption="caption" :image="image" :variant="variant" />
@@ -24,7 +29,7 @@ defineProps<{
     </div>
 
     <div class="pdp-info">
-      <RouterLink class="pdp-back" :to="backTo">&larr; {{ backLabel }}</RouterLink>
+      <RouterLink class="pdp-back pdp-back-desktop" :to="backTo">&larr; {{ backLabel }}</RouterLink>
 
       <span v-if="tag" class="store-eyebrow pdp-tag">{{ tag }}</span>
       <h1 class="pdp-name">{{ name }}</h1>
@@ -65,6 +70,10 @@ defineProps<{
   color: var(--store-ink);
 }
 
+.pdp-back-mobile {
+  display: none;
+}
+
 .pdp-tag {
   display: block;
   margin-bottom: 10px;
@@ -93,6 +102,16 @@ defineProps<{
 @media (max-width: 820px) {
   .pdp {
     grid-template-columns: 1fr;
+  }
+
+  /* El de arriba (fuera de pdp-info) pasa a ser el visible; el de dentro
+     de pdp-info se oculta para no duplicarlo. */
+  .pdp-back-mobile {
+    display: inline-block;
+  }
+
+  .pdp-back-desktop {
+    display: none;
   }
 }
 </style>

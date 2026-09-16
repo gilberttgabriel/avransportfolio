@@ -37,3 +37,6 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Master del video de inicio: se conserva local, no en el repo
+media/

@@ -29,7 +29,16 @@ function onTransitionEnd(e: TransitionEvent) {
   <div class="hero">
     <div class="iris" :class="{ open: active, 'no-anim': instant }" @transitionend="onTransitionEnd">
       <!-- loop nativo: reinicia sin el corte que provocaba rebobinar desde JS. -->
-      <video ref="videoEl" class="hero-video" autoplay loop muted playsinline preload="auto">
+      <video
+        ref="videoEl"
+        class="hero-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        webkit-playsinline="true"
+        preload="auto"
+      >
         <source src="/1.mp4" type="video/mp4" />
       </video>
       <div class="iris-border" :class="{ hidden: finished }"></div>

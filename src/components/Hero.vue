@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const props = withDefaults(defineProps<{ active: boolean; instant?: boolean }>(), {
@@ -10,12 +10,31 @@ const emit = defineEmits<{ (e: 'opened'): void }>()
 const finished = ref(props.instant)
 const videoEl = ref<HTMLVideoElement | null>(null)
 
+// El video no lleva "autoplay": preload="auto" lo deja bufferizando en
+// segundo plano (oculto tras el clip-path) mientras dura el welcome, pero
+// no arranca a reproducirse hasta que el iris empieza a abrirse. Asi el
+// primer fotograma que se ve siempre coincide con el inicio de la
+// animacion, igual en desktop que en movil, en vez de llegar ya avanzado.
+function playFromStart() {
+  const v = videoEl.value
+  if (!v) return
+  v.currentTime = 0
+  v.play().catch(() => {})
+}
+
 onMounted(() => {
-  if (props.instant) emit('opened')
-  // Refuerzo para iOS Safari: a veces ignora el atributo autoplay del
-  // primer <video> montado en la pagina aunque este muteado.
-  videoEl.value?.play().catch(() => {})
+  if (props.instant) {
+    emit('opened')
+    playFromStart()
+  }
 })
+
+watch(
+  () => props.active,
+  (active) => {
+    if (active && !props.instant) playFromStart()
+  },
+)
 
 function onTransitionEnd(e: TransitionEvent) {
   if (e.propertyName === 'clip-path' && props.active) {
@@ -32,7 +51,6 @@ function onTransitionEnd(e: TransitionEvent) {
       <video
         ref="videoEl"
         class="hero-video"
-        autoplay
         loop
         muted
         playsinline

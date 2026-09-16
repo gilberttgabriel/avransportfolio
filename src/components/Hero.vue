@@ -8,13 +8,17 @@ const props = withDefaults(defineProps<{ active: boolean; instant?: boolean }>()
 const emit = defineEmits<{ (e: 'opened'): void }>()
 
 const finished = ref(props.instant)
+const videoEl = ref<HTMLVideoElement | null>(null)
 
 onMounted(() => {
   if (props.instant) emit('opened')
+  // Refuerzo para iOS Safari: a veces ignora el atributo autoplay del
+  // primer <video> montado en la pagina aunque este muteado.
+  videoEl.value?.play().catch(() => {})
 })
 
 function onTransitionEnd(e: TransitionEvent) {
-  if (e.propertyName === 'width' && props.active) {
+  if (e.propertyName === 'clip-path' && props.active) {
     finished.value = true
     emit('opened')
   }
@@ -25,7 +29,7 @@ function onTransitionEnd(e: TransitionEvent) {
   <div class="hero">
     <div class="iris" :class="{ open: active, 'no-anim': instant }" @transitionend="onTransitionEnd">
       <!-- loop nativo: reinicia sin el corte que provocaba rebobinar desde JS. -->
-      <video class="hero-video" autoplay loop muted playsinline preload="auto">
+      <video ref="videoEl" class="hero-video" autoplay loop muted playsinline preload="auto">
         <source src="/1.mp4" type="video/mp4" />
       </video>
       <div class="iris-border" :class="{ hidden: finished }"></div>
@@ -67,14 +71,14 @@ function onTransitionEnd(e: TransitionEvent) {
 }
 
 .iris {
+  /* Siempre a tamano completo: el efecto de apertura es un recorte visual
+     (clip-path), no el tamano real del contenedor. Un <video> renderizado
+     a 0x0 hace que Safari en iOS rechace el autoplay y muestre el boton
+     de play nativo como respaldo; con clip-path el video nunca mide cero. */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1), height 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  inset: 0;
+  clip-path: inset(50% round 0);
+  transition: clip-path 2.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .iris.no-anim {
@@ -82,8 +86,7 @@ function onTransitionEnd(e: TransitionEvent) {
 }
 
 .iris.open {
-  width: 100%;
-  height: 100%;
+  clip-path: inset(0 round 0);
 }
 
 .hero-video {

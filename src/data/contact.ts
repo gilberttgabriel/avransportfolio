@@ -4,16 +4,23 @@ export interface ContactChannel {
   url: string
 }
 
-/** Sustituye los valores por tus datos reales. */
 export const contact = {
   heading: 'Hablemos',
   intro:
     'Disponible para proyectos freelance y colaboraciones. La via mas rapida es el correo.',
   channels: [
-    { label: 'Correo', value: 'tu@correo.com', url: 'mailto:tu@correo.com' },
-    { label: 'Instagram', value: '@avran', url: '#' },
-    { label: 'GitHub', value: 'github.com/avran', url: '#' },
-    { label: 'LinkedIn', value: 'in/avran', url: '#' },
+    {
+      label: 'Correo',
+      value: 'avranrios17@gmail.com',
+      url: 'mailto:avranrios17@gmail.com',
+    },
+    { label: 'Instagram', value: '@avranrios', url: 'https://instagram.com/avranrios' },
+    { label: 'WhatsApp', value: '+58 412-7164899', url: 'https://wa.me/584127164899' },
+    {
+      label: 'LinkedIn',
+      value: 'in/abraham-rios-sequera',
+      url: 'https://linkedin.com/in/abraham-rios-sequera-394433324',
+    },
   ] as ContactChannel[],
   location: 'Caracas, Venezuela',
 }

@@ -5,12 +5,25 @@ import StoreLayout from '@/components/store/StoreLayout.vue'
 import DetailLayout from '@/components/store/DetailLayout.vue'
 import AccordionItem from '@/components/store/AccordionItem.vue'
 import ProductCard from '@/components/store/ProductCard.vue'
+import YouTubeEmbed from '@/components/store/YouTubeEmbed.vue'
 import { findProject, projects } from '@/data/projects'
+import { getYouTubeId } from '@/utils/youtube'
 
 const route = useRoute()
 const project = computed(() => findProject(String(route.params.slug)))
 const index = computed(() => projects.findIndex((p) => p.slug === project.value?.slug))
 const related = computed(() => projects.filter((p) => p.slug !== project.value?.slug).slice(0, 4))
+const videoId = computed(() => {
+  const url = project.value?.video
+  return url ? getYouTubeId(url) : null
+})
+// Las que no se muestran ya como imagen principal (o todas, si el media
+// principal es un video en vez de una foto).
+const extraImages = computed(() => {
+  const imgs = project.value?.images ?? []
+  if (!imgs.length) return []
+  return videoId.value ? imgs : imgs.filter((_, i) => i !== 1)
+})
 </script>
 
 <template>
@@ -24,15 +37,22 @@ const related = computed(() => projects.filter((p) => p.slug !== project.value?.
         :tagline="project.tagline"
         :tag="project.tag"
         :caption="project.category"
+        :image="videoId ? undefined : project.images?.[1]"
         :variant="index"
       >
+        <template v-if="videoId" #media>
+          <YouTubeEmbed :video-id="videoId" :title="project.name" />
+        </template>
+
         <div class="stack">
           <span v-for="s in project.stack" :key="s" class="stack-chip">{{ s }}</span>
         </div>
 
         <div class="accs">
           <AccordionItem title="Sobre el proyecto" :open="true">
-            {{ project.description }}
+            <p v-for="(paragraph, i) in project.description" :key="i" class="desc-p">
+              {{ paragraph }}
+            </p>
           </AccordionItem>
           <AccordionItem title="Rol">
             {{ project.role }}
@@ -51,6 +71,18 @@ const related = computed(() => projects.filter((p) => p.slug !== project.value?.
             </template>
             <span v-else>Aun no hay enlaces publicos.</span>
           </AccordionItem>
+          <AccordionItem v-if="extraImages.length" title="Mas imagenes">
+            <div class="extra-images">
+              <img
+                v-for="(src, i) in extraImages"
+                :key="src"
+                class="extra-img"
+                :src="src"
+                :alt="`${project.name} — foto ${i + 1}`"
+                loading="lazy"
+              />
+            </div>
+          </AccordionItem>
         </div>
       </DetailLayout>
 
@@ -65,6 +97,7 @@ const related = computed(() => projects.filter((p) => p.slug !== project.value?.
             :meta="p.year"
             :caption="p.category"
             :tag="p.tag"
+            :image="p.images?.[0]"
             :variant="i + 1"
           />
         </div>
@@ -94,10 +127,27 @@ const related = computed(() => projects.filter((p) => p.slug !== project.value?.
   text-transform: uppercase;
 }
 
+.desc-p + .desc-p {
+  margin-top: 1em;
+}
+
 .link {
   display: block;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.extra-images {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.extra-img {
+  width: 100%;
+  display: block;
+  background: var(--store-tile);
+  object-fit: cover;
 }
 
 .related {

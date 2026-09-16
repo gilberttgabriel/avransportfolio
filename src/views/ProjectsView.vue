@@ -55,6 +55,7 @@ const visible = computed(() => {
         :meta="p.year"
         :caption="p.category"
         :tag="p.tag"
+        :image="p.images?.[0]"
         :variant="i"
       />
     </div>

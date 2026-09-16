@@ -18,7 +18,9 @@ defineProps<{
 <template>
   <article class="pdp">
     <div class="pdp-media">
-      <ProductMedia :name="name" :caption="caption" :image="image" :variant="variant" />
+      <slot name="media">
+        <ProductMedia :name="name" :caption="caption" :image="image" :variant="variant" />
+      </slot>
     </div>
 
     <div class="pdp-info">

@@ -9,6 +9,7 @@ defineProps<{
   caption?: string
   tag?: string
   image?: string
+  fit?: 'cover' | 'contain'
   variant?: number
 }>()
 </script>
@@ -17,7 +18,7 @@ defineProps<{
   <RouterLink class="card" :to="to">
     <div class="card-media">
       <span v-if="tag" class="card-tag">{{ tag }}</span>
-      <ProductMedia :name="name" :caption="caption" :image="image" :variant="variant" />
+      <ProductMedia :name="name" :caption="caption" :image="image" :fit="fit" :variant="variant" />
     </div>
 
     <div class="card-row">

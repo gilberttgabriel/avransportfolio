@@ -147,4 +147,10 @@ import { contact } from '@/data/contact'
   text-transform: uppercase;
   color: rgba(241, 240, 226, 0.65);
 }
+
+@media (min-width: 821px) {
+  .panel {
+    margin-left: var(--store-gutter);
+  }
+}
 </style>

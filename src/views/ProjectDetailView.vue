@@ -38,6 +38,7 @@ const extraImages = computed(() => {
         :tag="project.tag"
         :caption="project.category"
         :image="videoId ? undefined : project.images?.[1]"
+        :fit="project.imageFit"
         :variant="index"
       >
         <template v-if="videoId" #media>
@@ -98,6 +99,7 @@ const extraImages = computed(() => {
             :caption="p.category"
             :tag="p.tag"
             :image="p.images?.[0]"
+            :fit="p.imageFit"
             :variant="i + 1"
           />
         </div>

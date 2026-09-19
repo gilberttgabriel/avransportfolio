@@ -8,9 +8,12 @@ const props = withDefaults(
     caption?: string
     /** Ruta a una imagen real. Si existe, sustituye al marcador. */
     image?: string
+    /** 'cover' recorta para llenar el marco (fotografia). 'contain' muestra
+     *  la pieza completa sin recortar (logos/letterings panoramicos). */
+    fit?: 'cover' | 'contain'
     variant?: number
   }>(),
-  { variant: 0 },
+  { variant: 0, fit: 'cover' },
 )
 
 const initials = computed(() =>
@@ -28,7 +31,13 @@ const mark = computed(() => props.variant % 3)
 
 <template>
   <div class="media">
-    <img v-if="image" class="media-img" :src="image" :alt="name" />
+    <img
+      v-if="image"
+      class="media-img"
+      :class="{ contain: fit === 'contain' }"
+      :src="image"
+      :alt="name"
+    />
 
     <template v-else>
       <svg class="media-mark" viewBox="0 0 120 120" aria-hidden="true">
@@ -58,6 +67,14 @@ const mark = computed(() => props.variant % 3)
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Ancho/alto reducidos (en vez de padding) para que el aire alrededor
+   quede centrado via el flex del padre, sin líos de box-sizing. */
+.media-img.contain {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
 }
 
 .media-mark {

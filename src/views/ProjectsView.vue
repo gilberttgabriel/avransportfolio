@@ -56,6 +56,7 @@ const visible = computed(() => {
         :caption="p.category"
         :tag="p.tag"
         :image="p.images?.[0]"
+        :fit="p.imageFit"
         :variant="i"
       />
     </div>

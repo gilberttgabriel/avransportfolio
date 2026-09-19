@@ -5,12 +5,11 @@ export interface AboutSection {
 
 /** El "unico articulo" de la coleccion Sobre mi. */
 export const about = {
-  slug: 'avran',
   name: 'AVRAN',
   /** Ocupa el lugar del precio en la ficha */
   year: 'Caracas, VE',
   category: 'Perfil',
-  tag: 'ONE OF ONE',
+  tag: 'Abraham Rios',
   tagline: 'Desarrollador frontend y disenador',
   intro:
     'Sustituye este texto por tu presentacion: quien eres, que haces y que tipo de trabajo te interesa. Dos o tres frases bastan.',

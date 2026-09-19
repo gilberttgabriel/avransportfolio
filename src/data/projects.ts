@@ -22,6 +22,9 @@ export interface Project {
   /** Fotos reales del proyecto. La primera es la miniatura de la grilla;
    *  en la ficha se muestran todas si el proyecto no tiene video. */
   images?: string[]
+  /** 'contain' para logos/letterings panoramicos que no deben recortarse;
+   *  por defecto 'cover' (fotografia). */
+  imageFit?: 'cover' | 'contain'
   role: string
   stack: string[]
   links: ProjectLink[]
@@ -39,6 +42,8 @@ export const projects: Project[] = [
       'Como Director Audiovisual, lleve adelante la conceptualizacion y ejecucion del videoclip, trabajando junto a mi equipo para transformar la idea en una pieza final con recursos limitados. Desde la vision creativa hasta la resolucion de las necesidades de produccion, participe activamente en el proceso para construir una propuesta visual coherente con la esencia del album.',
       'Mi contribucion tambien se extendio al desarrollo musical del proyecto, involucrandome como escritor y colaborando en la produccion de la cancion.',
     ],
+    images: ['/aun-me-acuerdo-de-ti.png'],
+    imageFit: 'contain',
     video: 'https://youtu.be/G4zL3PJQpH0',
     role: 'Direccion Creativa · Direccion Audiovisual · Direccion de Arte · Escritor de Cancion',
     stack: ['Direccion Creativa', 'Direccion Audiovisual', 'Direccion de Arte', 'Escritor de Cancion'],
@@ -54,6 +59,8 @@ export const projects: Project[] = [
       'En este proyecto ejerci como Director Audiovisual, tambien participe en la produccion del proyecto a traves de la gestion de patrocinios, estableciendo alianzas con marcas que hicieron posible la realizacion del video.',
       'Mi contribucion combino la direccion con la gestion de recursos y oportunidades de colaboracion, contribuyendo tanto al desarrollo creativo como a la materializacion de la pieza final.',
     ],
+    images: ['/pa-no-pensarte.png'],
+    imageFit: 'contain',
     video: 'https://www.youtube.com/watch?v=BZY8-eJn8b8',
     role: 'Direccion Creativa · Direccion Audiovisual · Direccion de Arte · Produccion Audiovisual',
     stack: ['Direccion Creativa', 'Direccion Audiovisual', 'Direccion de Arte', 'Produccion Audiovisual'],
@@ -71,6 +78,8 @@ export const projects: Project[] = [
       'Como Director Creativo y Director de Arte, participe en el desarrollo del lenguaje visual y la construccion de la pieza. Desde la Direccion Audiovisual, lidere la ejecucion del video junto al equipo, mientras que en produccion apoye la materializacion del proyecto y la resolucion de sus necesidades.',
       'Una pieza que reune mi trabajo en direccion, narrativa visual y produccion, conectando la vision creativa del album con su cierre audiovisual.',
     ],
+    images: ['/se-fue-la-luz.png'],
+    imageFit: 'contain',
     video: 'https://www.youtube.com/watch?v=zbk_fnWft-o',
     role: 'Direccion Creativa · Direccion Audiovisual · Direccion de Arte · Produccion Audiovisual',
     stack: ['Direccion Creativa', 'Direccion Audiovisual', 'Direccion de Arte', 'Produccion Audiovisual'],
@@ -88,6 +97,8 @@ export const projects: Project[] = [
       'Mi participacion se centro en el desarrollo de la conceptualizacion creativa y la construccion de un lenguaje visual que conectara las distintas piezas, buscando que cada una funcionara individualmente y, al mismo tiempo, perteneciera a un universo comun.',
       'Esta pieza representa una parte de un proyecto audiovisual mas amplio, concebido para acompanar y expandir la identidad del album a traves de diferentes formatos y narrativas visuales.',
     ],
+    images: ['/el-tren-se-nos-paso.png'],
+    imageFit: 'contain',
     video: 'https://www.youtube.com/watch?v=kuovwjUkXU4',
     role: 'Direccion Creativa · Direccion Audiovisual · Produccion Audiovisual',
     stack: ['Direccion Creativa', 'Direccion Audiovisual', 'Produccion Audiovisual'],

@@ -11,6 +11,7 @@ defineProps<{
   tag?: string
   caption?: string
   image?: string
+  fit?: 'cover' | 'contain'
   variant?: number
 }>()
 </script>
@@ -24,7 +25,7 @@ defineProps<{
 
     <div class="pdp-media">
       <slot name="media">
-        <ProductMedia :name="name" :caption="caption" :image="image" :variant="variant" />
+        <ProductMedia :name="name" :caption="caption" :image="image" :fit="fit" :variant="variant" />
       </slot>
     </div>
 

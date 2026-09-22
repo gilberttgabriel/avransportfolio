@@ -82,12 +82,13 @@ import { about } from '@/data/about'
 
 .about-scrim {
   z-index: -1;
-  /* Movil: oscurece abajo, igual que en contacto. */
+  /* Movil: oscurece toda la foto un poco mas para que el trazo crema
+     tenga contraste, y sigue oscureciendo mas fuerte hacia abajo. */
   background: linear-gradient(
     to bottom,
-    rgba(20, 16, 14, 0.2) 0%,
-    rgba(20, 16, 14, 0.45) 55%,
-    rgba(20, 16, 14, 0.86) 100%
+    rgba(20, 16, 14, 0.45) 0%,
+    rgba(20, 16, 14, 0.6) 55%,
+    rgba(20, 16, 14, 0.88) 100%
   );
 }
 

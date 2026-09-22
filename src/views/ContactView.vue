@@ -1,6 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import StoreLayout from '@/components/store/StoreLayout.vue'
 import { contact } from '@/data/contact'
+
+const copiedLabel = ref<string | null>(null)
+
+async function copyEmail(e: MouseEvent, c: (typeof contact.channels)[number]) {
+  if (!c.url.startsWith('mailto:')) return
+  e.preventDefault()
+  try {
+    await navigator.clipboard.writeText(c.value)
+    copiedLabel.value = c.label
+    setTimeout(() => {
+      if (copiedLabel.value === c.label) copiedLabel.value = null
+    }, 1800)
+  } catch {
+    // Sin permiso de portapapeles: deja que el navegador abra el mailto igual.
+    window.location.href = c.url
+  }
+}
 </script>
 
 <template>
@@ -16,9 +34,11 @@ import { contact } from '@/data/contact'
 
         <ul class="channels">
           <li v-for="c in contact.channels" :key="c.label">
-            <a :href="c.url" target="_blank" rel="noopener">
+            <a :href="c.url" target="_blank" rel="noopener" @click="copyEmail($event, c)">
               <span class="channel-label">{{ c.label }}</span>
-              <span class="channel-value">{{ c.value }}</span>
+              <span class="channel-value">{{
+                copiedLabel === c.label ? 'Copiado' : c.value
+              }}</span>
             </a>
           </li>
         </ul>

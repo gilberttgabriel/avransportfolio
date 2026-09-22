@@ -37,7 +37,10 @@ const links = [
         <span :class="{ x: menuOpen }"></span>
       </button>
 
-      <RouterLink class="wordmark" to="/">AVRAN</RouterLink>
+      <RouterLink class="wordmark" to="/">
+        <span class="wordmark-icon" aria-hidden="true"></span>
+        AVRAN
+      </RouterLink>
     </header>
 
     <div class="menu-wrap" :class="{ open: menuOpen }">
@@ -113,10 +116,24 @@ const links = [
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-family: 'Drowner', var(--store-font);
   font-size: clamp(1.3rem, 2.2vw, 1.8rem);
   letter-spacing: 0.1em;
   line-height: 1;
+}
+
+/* Mascara en vez de <img>: toma el color del texto (currentColor),
+   asi se adapta solo entre modo claro y modo transparente sobre foto. */
+.wordmark-icon {
+  width: 0.85em;
+  height: 0.85em;
+  background-color: currentColor;
+  -webkit-mask: url('/favicon.png') center / contain no-repeat;
+  mask: url('/favicon.png') center / contain no-repeat;
+  flex-shrink: 0;
 }
 
 /* Animar grid-template-rows de 0fr a 1fr da una altura fluida sin

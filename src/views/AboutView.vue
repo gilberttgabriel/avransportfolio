@@ -10,15 +10,9 @@ import { about } from '@/data/about'
 
     <StoreLayout transparent>
       <section class="panel">
-        <span class="store-eyebrow panel-eyebrow">Sobre mi</span>
-        <h1 class="panel-title">{{ about.name }}</h1>
-        <p class="panel-intro">{{ about.intro }}</p>
-
-        <div class="notes">
-          <div v-for="s in about.sections" :key="s.title" class="note">
-            <span class="note-label">{{ s.title }}</span>
-            <p class="note-body">{{ s.body }}</p>
-          </div>
+        <div class="handwritten">
+          <img src="/note-1.png" alt="Quien soy, escrito a mano por Abraham" class="note-page" />
+          <img src="/note-2.png" alt="Continuacion del escrito a mano" class="note-page" />
         </div>
 
         <p class="panel-place">{{ about.tag }}</p>
@@ -89,47 +83,20 @@ import { about } from '@/data/about'
   color: var(--cream);
 }
 
-.panel-eyebrow {
-  color: rgba(241, 240, 226, 0.65);
+.handwritten {
+  margin: 0 0 clamp(24px, 4vh, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.panel-title {
-  margin-top: 14px;
-  font-family: 'Drowner', var(--store-font);
-  font-size: clamp(2.6rem, 7vw, 5rem);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-
-.panel-intro {
-  margin: 18px 0 clamp(24px, 4vh, 44px);
-  max-width: 42ch;
-  line-height: 1.7;
-  color: rgba(241, 240, 226, 0.85);
-}
-
-.notes {
-  border-top: 1px solid rgba(241, 240, 226, 0.28);
-}
-
-.note {
-  padding: clamp(12px, 1.8vh, 18px) 0;
-  border-bottom: 1px solid rgba(241, 240, 226, 0.28);
-}
-
-.note-label {
+.note-page {
   display: block;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(241, 240, 226, 0.65);
-}
-
-.note-body {
-  margin-top: 8px;
-  line-height: 1.7;
-  color: rgba(241, 240, 226, 0.92);
+  width: 100%;
+  height: auto;
+  /* Sombra suave para que el trazo "flote" sobre la foto, como si
+     estuviese escrito directamente en la pantalla. */
+  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.55));
 }
 
 .panel-place {

@@ -11,8 +11,22 @@ import { about } from '@/data/about'
     <StoreLayout transparent>
       <section class="panel">
         <div class="handwritten">
-          <img src="/note-1.png" alt="Quien soy, escrito a mano por Abraham" class="note-page" />
-          <img src="/note-2.png" alt="Continuacion del escrito a mano" class="note-page" />
+          <img
+            src="/note-1.webp"
+            alt="Quien soy, escrito a mano por Abraham"
+            class="note-page"
+            width="1200"
+            height="1836"
+            loading="eager"
+          />
+          <img
+            src="/note-2.webp"
+            alt="Continuacion del escrito a mano"
+            class="note-page"
+            width="1200"
+            height="1895"
+            loading="lazy"
+          />
         </div>
 
         <p class="panel-place">{{ about.tag }}</p>

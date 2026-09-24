@@ -61,7 +61,7 @@ const visible = computed(() => {
       />
     </div>
 
-    <p v-if="!visible.length" class="empty">No hay proyectos en esa categoria.</p>
+    <p v-if="!visible.length" class="empty">No hay proyectos en esa categoría.</p>
   </StoreLayout>
 </template>
 

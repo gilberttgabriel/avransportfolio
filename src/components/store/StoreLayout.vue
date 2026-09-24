@@ -17,7 +17,7 @@ watch(
 const links = [
   { to: '/', label: 'Inicio' },
   { to: '/proyectos', label: 'Proyectos' },
-  { to: '/sobre-mi', label: 'Sobre mi' },
+  { to: '/sobre-mi', label: 'Sobre mí' },
   { to: '/contacto', label: 'Contacto' },
 ]
 </script>
@@ -65,7 +65,11 @@ const links = [
 
     <footer v-if="!transparent" class="foot">
       <span>AVRAN &copy; {{ new Date().getFullYear() }}</span>
-      <RouterLink to="/sobre-mi">Sobre mi</RouterLink>
+      <RouterLink to="/sobre-mi">Sobre mí</RouterLink>
+      <a class="credit" href="https://gilbertosworldwideweb.com" target="_blank" rel="noopener">
+        desarrollado por Gilbert
+        <img src="/bygilbert.png" alt="" class="credit-icon" aria-hidden="true" />
+      </a>
     </footer>
   </div>
 </template>
@@ -202,8 +206,9 @@ const links = [
 
 .foot {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px 16px;
   padding: 40px var(--store-gutter);
   margin-top: 60px;
   border-top: 1px solid var(--store-line);
@@ -246,4 +251,26 @@ const links = [
   background: var(--cream);
 }
 
+/* Estatico dentro del footer del documento, no flotante: no puede
+   taparle taps a nada del resto de la pagina. */
+.credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--store-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.credit:hover {
+  color: var(--store-ink);
+}
+
+.credit-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
 </style>

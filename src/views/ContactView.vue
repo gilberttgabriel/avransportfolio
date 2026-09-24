@@ -43,7 +43,19 @@ async function copyEmail(e: MouseEvent, c: (typeof contact.channels)[number]) {
           </li>
         </ul>
 
-        <p class="panel-place">{{ contact.location }}</p>
+        <div class="place-row">
+          <p class="panel-place">{{ contact.location }}</p>
+
+          <a
+            class="credit"
+            href="https://gilbertosworldwideweb.com"
+            target="_blank"
+            rel="noopener"
+          >
+            desarrollado por Gilbert
+            <img src="/bygilbert.png" alt="" class="credit-icon" aria-hidden="true" />
+          </a>
+        </div>
       </section>
     </StoreLayout>
   </div>
@@ -160,12 +172,41 @@ async function copyEmail(e: MouseEvent, c: (typeof contact.channels)[number]) {
   color: rgba(241, 240, 226, 0.65);
 }
 
-.panel-place {
+.place-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: clamp(20px, 4vh, 40px);
+}
+
+.panel-place {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(241, 240, 226, 0.65);
+}
+
+.credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(241, 240, 226, 0.5);
+  transition: color 0.2s ease-out;
+}
+
+.credit:hover {
+  color: var(--cream);
+}
+
+.credit-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 @media (min-width: 821px) {

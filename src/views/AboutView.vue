@@ -13,7 +13,7 @@ import { about } from '@/data/about'
         <div class="handwritten">
           <img
             src="/note-1.webp"
-            alt="Quien soy, escrito a mano por Abraham"
+            alt="Quién soy, escrito a mano por Abraham"
             class="note-page"
             width="1200"
             height="1836"
@@ -21,7 +21,7 @@ import { about } from '@/data/about'
           />
           <img
             src="/note-2.webp"
-            alt="Continuacion del escrito a mano"
+            alt="Continuación del escrito a mano"
             class="note-page"
             width="1200"
             height="1895"

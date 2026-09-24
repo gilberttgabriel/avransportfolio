@@ -1,4 +1,4 @@
-/** El "unico articulo" de la coleccion Sobre mi. */
+/** El "único artículo" de la colección Sobre mí. */
 export const about = {
   tag: 'Abraham Rios',
 }

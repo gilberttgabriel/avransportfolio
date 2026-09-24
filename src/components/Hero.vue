@@ -64,7 +64,7 @@ function onTransitionEnd(e: TransitionEvent) {
 
     <nav class="nav" :class="{ visible: finished }">
       <RouterLink to="/proyectos" class="nav-link">proyectos</RouterLink>
-      <RouterLink to="/sobre-mi" class="nav-link">sobre mi</RouterLink>
+      <RouterLink to="/sobre-mi" class="nav-link">sobre mí</RouterLink>
       <RouterLink to="/contacto" class="nav-link">contacto</RouterLink>
     </nav>
 

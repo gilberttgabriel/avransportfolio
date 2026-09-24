@@ -7,7 +7,7 @@ export interface ContactChannel {
 export const contact = {
   heading: 'Hablemos',
   intro:
-    'Disponible para proyectos freelance y colaboraciones. La via mas rapida es el correo.',
+    'Disponible para proyectos freelance y colaboraciones. La vía más rápida es el correo.',
   channels: [
     {
       label: 'Correo',

@@ -70,9 +70,9 @@ const extraImages = computed(() => {
                 >{{ l.label }}</a
               >
             </template>
-            <span v-else>Aun no hay enlaces publicos.</span>
+            <span v-else>Aún no hay enlaces públicos.</span>
           </AccordionItem>
-          <AccordionItem v-if="extraImages.length" title="Mas imagenes">
+          <AccordionItem v-if="extraImages.length" title="Más imágenes">
             <div class="extra-images">
               <img
                 v-for="(src, i) in extraImages"
@@ -88,7 +88,7 @@ const extraImages = computed(() => {
       </DetailLayout>
 
       <section class="related">
-        <h2 class="store-eyebrow">Tambien podria interesarte</h2>
+        <h2 class="store-eyebrow">También podría interesarte</h2>
         <div class="grid">
           <ProductCard
             v-for="(p, i) in related"
@@ -107,7 +107,7 @@ const extraImages = computed(() => {
     </template>
 
     <p v-else class="missing">
-      Ese proyecto no existe. <RouterLink to="/proyectos">Volver a la coleccion</RouterLink>
+      Ese proyecto no existe. <RouterLink to="/proyectos">Volver a la colección</RouterLink>
     </p>
   </StoreLayout>
 </template>

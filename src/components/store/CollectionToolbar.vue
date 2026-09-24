@@ -20,8 +20,8 @@ const panel = ref<'none' | 'sort' | 'refine'>('none')
 
 const sortOptions: { key: SortKey; label: string }[] = [
   { key: 'recommended', label: 'Recomendado' },
-  { key: 'newest', label: 'Mas reciente' },
-  { key: 'oldest', label: 'Mas antiguo' },
+  { key: 'newest', label: 'Más reciente' },
+  { key: 'oldest', label: 'Más antiguo' },
   { key: 'az', label: 'A - Z' },
 ]
 

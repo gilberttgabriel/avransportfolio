@@ -86,9 +86,9 @@ import { about } from '@/data/about'
      tenga contraste, y sigue oscureciendo mas fuerte hacia abajo. */
   background: linear-gradient(
     to bottom,
-    rgba(20, 16, 14, 0.45) 0%,
-    rgba(20, 16, 14, 0.6) 55%,
-    rgba(20, 16, 14, 0.88) 100%
+    rgba(20, 16, 14, 0.58) 0%,
+    rgba(20, 16, 14, 0.72) 55%,
+    rgba(20, 16, 14, 0.94) 100%
   );
 }
 
@@ -144,9 +144,9 @@ import { about } from '@/data/about'
   .about-scrim {
     background: linear-gradient(
       to left,
-      rgba(0, 0, 0, 0) 40%,
-      rgba(0, 0, 0, 0.55) 70%,
-      rgba(0, 0, 0, 0.92) 100%
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.68) 70%,
+      rgba(0, 0, 0, 0.96) 100%
     );
   }
 
